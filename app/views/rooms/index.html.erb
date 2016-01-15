@@ -1,0 +1,38 @@
+<div class="container rooms">
+  <div class="row">
+    <div class="col-sm-12">
+      <header>
+        <h1>Habitaciones</h1>
+        <%= link_to "<span class='glyphicon glyphicon-plus'></span><span class='hidden-xs'> Publicar </span>  Habitación".html_safe, new_room_path, class: "btn btn-primary new-room" %>
+      </header>
+
+      <div class="rooms-list">
+      <% @rooms.each do |room| %>
+        <div class="room">
+          <div class="row">
+            <div class="col-sm-5 col-md-4"><img src="<%= room.image_url %>"></div>
+            <div class="col-sm-7 col-md-8">
+              <div class="details clearfix">
+                <h3><%= room.title %></h3>
+                <div class="description"><%= room.description.truncate(255) if room.description %></div>
+                <div class="number">
+                  <div class="number-value"><%= room.beds %></div>
+                  <div class="number-label">Camas</div>
+                </div>
+                <div class="number">
+                  <div class="number-value"><%= room.guests %></div>
+                  <div class="number-label">Huéspedes</div>
+                </div>
+                <div class="actions">
+                  <%= link_to "<span class='glyphicon glyphicon-pencil'><span>".html_safe, edit_room_path(room), class: "edit-room-btn" %>
+                  <%= link_to "<span class='glyphicon glyphicon-trash'><span>".html_safe, room, method: :delete, data: { confirm: "¿Estás seguro de eliminar esta habitación?" }, class: "destroy-room-btn" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
